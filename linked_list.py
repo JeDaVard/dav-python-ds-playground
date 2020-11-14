@@ -55,6 +55,24 @@ class LinkedList:
 
         return self
 
+    def insert(self, index, value):
+        if index == 0:
+            return self.prepend(value)
+
+        length = self.length()
+
+        if index == length - 1:
+            return self.append(value)
+
+        if index > length - 1 or index < 1:
+            return self
+
+        prev_node = self.get(index - 1)
+        node = Node(value, prev_node.next)
+        prev_node.next = node
+
+        return self
+
     def delete(self, index):
         if index < 0:
             return None
