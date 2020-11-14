@@ -17,6 +17,16 @@ class LinkedList:
 
         return counter
 
+    def list(self):
+        lst = []
+        node = self.head
+
+        while node:
+            lst.append(node)
+            node = node.next
+
+        return lst
+
     def prepend(self, value):
         self.head = Node(value, self.head or None)
 
@@ -92,3 +102,4 @@ print(linked_list.get(2))
 print(linked_list.last())
 linked_list.append('hello').append('hello').append('hello')
 print(linked_list.length())
+print(linked_list.list())
