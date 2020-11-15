@@ -22,7 +22,7 @@ class LinkedList:
         node = self.head
 
         while node:
-            lst.append(node)
+            lst.append(node.value)
             node = node.next
 
         return lst
