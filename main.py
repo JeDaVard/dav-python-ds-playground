@@ -35,5 +35,7 @@ def has_common_a_plus_b(l1, l2):
 if __name__ == '__main__':
     from timeit import timeit
 
-    print(timeit('has_common_a_multiply_b(list1, list2)', number=1, setup='from __main__ import has_common_a_multiply_b, list1, list2'))
-    print(timeit('has_common_a_plus_b(list1, list2)', number=1, setup='from __main__ import has_common_a_plus_b, list1, list2'))
+    print(timeit('has_common_a_multiply_b(list1, list2)', number=1,
+                 setup='from __main__ import has_common_a_multiply_b, list1, list2'))
+    print(timeit('has_common_a_plus_b(list1, list2)', number=1,
+                 setup='from __main__ import has_common_a_plus_b, list1, list2'))
