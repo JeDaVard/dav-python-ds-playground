@@ -15,6 +15,7 @@ class Tree:
     def insert(self, value):
         if not self.root:
             self.root = Node(value)
+            return self
         else:
             current = self.root
 
@@ -96,13 +97,92 @@ class Tree:
 
                 return True
 
+    def breadth_search_tree(self, value=None):
+        current = self.root
+        lst = []
+        queue = [current]
 
-tree = Tree()
-tree.insert(10)
-tree.insert(16).insert(14).insert(4).insert(8).insert(2).insert(19).insert(7).insert(3)
-print(tree.get_tree().right)
-print(tree.lookup(16))
+        if value and value == current.value:
+            return value
 
-print(tree.remove(14))
-print(tree.get_tree())
+        while queue:
+            current = queue.pop(0)
+            lst.append(current.value)
+            if current.left:
+                queue.append(current.left)
+            if current.right:
+                queue.append(current.right)
+
+        return lst
+
+    def breadth_search_tree_r(self, queue, lst, value=None):
+        if not queue:
+            return lst
+
+        current = queue.pop(0)
+
+        if value and value == current.value:
+            return value
+
+        lst.append(current.value)
+        if current.left:
+            queue.append(current.left)
+        if current.right:
+            queue.append(current.right)
+
+        return self.breadth_search_tree_r(queue, lst)
+
+    def depth_search_tree_in_order(self):
+        return traverse_in_order(self.root, [])
+
+    def depth_search_tree_pre_order(self):
+        return traverse_pre_order(self.root, [])
+
+    def depth_search_tree_post_order(self):
+        return traverse_post_order(self.root, [])
+
+
+def traverse_in_order(node, lst):
+    if node.left:
+        traverse_in_order(node.left, lst)
+
+    lst.append(node.value)
+
+    if node.right:
+        traverse_in_order(node.right, lst)
+
+    return lst
+
+
+def traverse_pre_order(node, lst):
+    lst.append(node.value)
+    if node.left:
+        traverse_in_order(node.left, lst)
+
+    if node.right:
+        traverse_in_order(node.right, lst)
+
+    return lst
+
+
+def traverse_post_order(node, lst):
+    if node.left:
+        traverse_in_order(node.left, lst)
+
+    if node.right:
+        traverse_in_order(node.right, lst)
+
+    lst.append(node.right.value)
+
+    return lst
+
+# test it
+# tree = Tree()
+# tree.insert(10)
+# tree.insert(16).insert(14).insert(4).insert(8).insert(2).insert(19).insert(7).insert(3)
+# print(tree.get_tree().right)
+# print(tree.lookup(16))
+#
+# print(tree.remove(14))
+# print(tree.get_tree())
 
